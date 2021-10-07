@@ -22,28 +22,13 @@ namespace ProiectNET.Repositories
             this.dbContext = dbContext;
         }
 
+
+
         public void InsertAnnouncement (AnnouncementModel announcementModel)
         {
             announcementModel.IDAnnouncement = Guid.NewGuid();
             dbContext.Announcements.InsertOnSubmit(MapModelToDbObject(announcementModel));
             dbContext.SubmitChanges();
-        }
-
-        private Announcement MapModelToDbObject(AnnouncementModel announcementModel)
-        {
-            Announcement dbAnnouncement = new Announcement();
-            if(announcementModel != null)
-            {
-                dbAnnouncement.IDAnnouncement = announcementModel.IDAnnouncement;
-                dbAnnouncement.ValidFrom = announcementModel.ValidFrom;
-                dbAnnouncement.ValidTo = announcementModel.ValidTo;
-                dbAnnouncement.Title = announcementModel.Title;
-                dbAnnouncement.Text = announcementModel.Text;
-                dbAnnouncement.EventDateTime = announcementModel.EventDateTime;
-                dbAnnouncement.Tags = announcementModel.Tags;
-                return dbAnnouncement;
-            }
-            return null;
         }
 
         public List<AnnouncementModel> GetAllAnnouncements()
@@ -87,6 +72,25 @@ namespace ProiectNET.Repositories
                 dbContext.Announcements.DeleteOnSubmit(announcementToBeDeleted);
                 dbContext.SubmitChanges();
             }
+        }
+
+
+
+        private Announcement MapModelToDbObject(AnnouncementModel announcementModel)
+        {
+            Announcement dbAnnouncement = new Announcement();
+            if (announcementModel != null)
+            {
+                dbAnnouncement.IDAnnouncement = announcementModel.IDAnnouncement;
+                dbAnnouncement.ValidFrom = announcementModel.ValidFrom;
+                dbAnnouncement.ValidTo = announcementModel.ValidTo;
+                dbAnnouncement.Title = announcementModel.Title;
+                dbAnnouncement.Text = announcementModel.Text;
+                dbAnnouncement.EventDateTime = announcementModel.EventDateTime;
+                dbAnnouncement.Tags = announcementModel.Tags;
+                return dbAnnouncement;
+            }
+            return null;
         }
 
         private AnnouncementModel MapDbObjectToModel(Announcement announcement)
