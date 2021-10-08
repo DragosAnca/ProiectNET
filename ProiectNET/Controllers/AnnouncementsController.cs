@@ -33,6 +33,7 @@ namespace ProiectNET.Controllers
             return View("CreateAnnouncement");
         }
 
+        [Authorize(Roles = "User, Admin")]
         // POST: Announcements/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
@@ -83,6 +84,7 @@ namespace ProiectNET.Controllers
             return View("Delete", announcementModel);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Announcements/Delete/5
         [HttpPost]
         public ActionResult Delete(Guid id, FormCollection collection)

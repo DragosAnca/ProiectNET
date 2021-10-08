@@ -8,6 +8,7 @@ namespace ProiectNET.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize(Roles ="Admin, User, Visitor")]
         public ActionResult Index()
         {
             return View();
